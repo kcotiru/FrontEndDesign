@@ -8,10 +8,11 @@ and LCP discipline — an art-directed `<picture>` hero (a different crop on
 mobile, not the same file scaled) in a reserved aspect-ratio box, so a failed
 image fetch cannot shift layout.
 
-`next/image` is deliberately not used for the hero: Unsplash already handles
-format and resizing via URL parameters, and `next/image` cannot express two
-different crops without preloading both — which would cost the LCP this page
-exists to demonstrate.
+`next/image` is deliberately not used for the hero: Unsplash already performs
+format negotiation and resizing via URL parameters, so routing through
+Next's image optimizer would add a hop and a runtime dependency in front of
+an already-optimizing CDN, for no measured gain against an LCP budget the
+site already meets with large margin.
 
 ```bash
 pnpm dev:atelier   # http://localhost:3001

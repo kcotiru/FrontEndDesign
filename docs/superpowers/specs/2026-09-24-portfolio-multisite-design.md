@@ -83,7 +83,7 @@ Approach selected: **shared headless primitives with per-app skins**, amended so
 
 ### 01 — atelier (Next.js)
 
-Pages: home, menu, reservations, story. Demonstrates `generateMetadata`, JSON-LD structured data for `Restaurant` and `Menu`, `next/image` with art-directed sources, and an LCP hero held under 2.5s on a simulated 4G profile. Reservation form validates but posts nowhere.
+Pages: home, menu, reservations, story. Demonstrates the Metadata API, JSON-LD structured data for `Restaurant` and `Menu`, art-directed responsive images, and an LCP hero held under 2.5s on a simulated 4G profile. Reservation form validates but posts nowhere.
 
 ### 02 — forge (Next.js)
 
