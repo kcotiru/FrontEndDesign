@@ -18,7 +18,7 @@ export default function JsonLd() {
     },
     openingHoursSpecification: restaurant.hours.map((h) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayOfWeek: h.days,
       opens: h.opens,
       closes: h.closes,
     })),

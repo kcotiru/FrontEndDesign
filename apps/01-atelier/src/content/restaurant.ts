@@ -8,8 +8,10 @@ export type Restaurant = {
   address: { street: string; locality: string; postalCode: string; country: string };
   telephone: string;
   priceRange: string;
-  hours: { days: string; opens: string; closes: string }[];
+  hours: { days: string[]; opens: string; closes: string }[];
 };
+
+export const formatDays = (d: string[]) => (d.length > 1 ? `${d[0]} – ${d.at(-1)}` : d[0] ?? "");
 
 export const restaurant: Restaurant = {
   name: "Atelier",
@@ -24,7 +26,13 @@ export const restaurant: Restaurant = {
   },
   telephone: "+33142608200",
   priceRange: "$$$$",
-  hours: [{ days: "Tuesday – Saturday", opens: "19:00", closes: "23:00" }],
+  hours: [
+    {
+      days: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "19:00",
+      closes: "23:00",
+    },
+  ],
 };
 
 export const menu: MenuSection[] = [
