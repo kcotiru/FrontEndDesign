@@ -1,0 +1,49 @@
+/* 01-atelier art direction. Owned by this app alone. */
+
+@theme {
+  --font-display: var(--font-cormorant-garamond), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Light: bone paper, warm ink, brass */
+  --color-surface: oklch(97.5% 0.008 85);
+  --color-raised: oklch(94% 0.012 85);
+  --color-ink: oklch(21% 0.015 40);
+  --color-muted: oklch(48% 0.012 40);
+  --color-accent: oklch(58% 0.095 75);
+  --color-line: oklch(87% 0.012 85);
+}
+
+/* Dark is art-directed, NOT an inversion: deep aubergine-black with a
+   warmer, brighter brass so the accent survives the darker ground. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-surface: oklch(16% 0.018 330);
+    --color-raised: oklch(21% 0.022 330);
+    --color-ink: oklch(94% 0.008 85);
+    --color-muted: oklch(72% 0.012 85);
+    --color-accent: oklch(72% 0.105 78);
+    --color-line: oklch(30% 0.02 330);
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-surface: oklch(16% 0.018 330);
+  --color-raised: oklch(21% 0.022 330);
+  --color-ink: oklch(94% 0.008 85);
+  --color-muted: oklch(72% 0.012 85);
+  --color-accent: oklch(72% 0.105 78);
+  --color-line: oklch(30% 0.02 330);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+}
