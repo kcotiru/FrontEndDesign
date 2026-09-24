@@ -205,10 +205,13 @@ Tailwind v4 is CSS-first, so the shared layer is a stylesheet, not a JS config o
     outline-offset: 2px;
   }
 
-  /* Never let a horizontal overflow ship. */
+  /* Constrain the document box, but deliberately do NOT set
+     `overflow-x: hidden` here. Hiding the overflow would mask the bug on all
+     six sites and make the Task 12 "no horizontal scroll" check pass
+     vacuously. A visible scrollbar is the signal that something inside is
+     too wide -- fix that element, never this rule. */
   html, body {
     max-width: 100%;
-    overflow-x: hidden;
   }
 }
 
@@ -251,7 +254,7 @@ git commit -m "feat(tw-preset): shared spacing, fluid type, focus rings"
 ### Task 3: Empty `packages/ui` with its promotion rule recorded
 
 **Files:**
-- Create: `packages/ui/package.json`, `packages/ui/README.md`
+- Create: `packages/ui/package.json`, `packages/ui/src/index.ts`, `packages/ui/README.md`
 
 **Interfaces:**
 - Consumes: nothing.
@@ -1302,6 +1305,15 @@ Add `<JsonLd />` inside `<head>`, after the theme script.
 
 - [ ] **Step 3: Set root metadata in `layout.tsx`**
 
+This needs two imports at the top of `layout.tsx` that earlier tasks did not add:
+
+```tsx
+import type { Metadata } from "next";
+import { restaurant } from "@/content/restaurant";
+```
+
+Then:
+
 ```tsx
 export const metadata: Metadata = {
   metadataBase: new URL("https://atelier.example.com"),
@@ -1428,7 +1440,9 @@ Expected: `all routes clean`. Fix every violation before continuing — this is 
 
 In DevTools → Settings → Debugger, check "Disable JavaScript". Reload each of the four routes.
 
-Expected: all copy, images, and navigation links render and work; every link navigates. The theme toggle may do nothing — that is the accepted degradation. Nothing may be invisible or missing.
+Expected: all copy, images, and navigation links render and work; every link navigates. Nothing may be invisible or missing.
+
+Two accepted degradations, both scoped deliberately: the theme toggle does nothing (the pre-paint script still applies a stored theme, since it is inline), and the reservation form renders but does not validate or submit. Per spec section 5, no-JS *form* operation belongs to `05-commons`, which owns progressive enhancement as its headline capability. Atelier's obligation here is that all content and navigation survive without JS — not the form.
 
 - [ ] **Step 4: Verify the responsive range**
 
