@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     title: "Atelier",
     description: restaurant.tagline,
     locale: "en_GB",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop&crop=entropy&q=80",
+        width: 1200,
+        height: 630,
+        alt: "The counter at Atelier, set for twelve, lit by low pendant lamps before service.",
+      },
+    ],
   },
 };
 

@@ -53,9 +53,10 @@ export default function ThemeToggle() {
       aria-pressed={isDark}
       className="min-h-tap min-w-tap focus-ring text-muted hover:text-ink"
     >
-      <span className="sr-only">
-        {isDark ? "Switch to light theme" : "Switch to dark theme"}
-      </span>
+      {/* Stable name paired with aria-pressed, not a changing "Switch to..."
+          name -- the two together would announce a contradiction
+          ("...pressed" right after "Switch to..."). */}
+      <span className="sr-only">Dark theme</span>
       <span aria-hidden="true">{isDark ? "☾" : "☀"}</span>
     </button>
   );
