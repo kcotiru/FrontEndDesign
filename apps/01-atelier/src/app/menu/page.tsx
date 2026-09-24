@@ -24,13 +24,15 @@ export default function MenuPage() {
             {section.dishes.map((dish) => (
               <div
                 key={dish.name}
-                className="flex justify-between gap-8 border-b border-line py-5"
+                className="grid grid-cols-[1fr_auto] grid-rows-[auto_auto] gap-x-8 gap-y-1 border-b border-line py-5"
               >
-                <div>
-                  <dt className="text-lg">{dish.name}</dt>
-                  <dd className="mt-1 text-sm text-muted">{dish.description}</dd>
-                </div>
-                <dd className="shrink-0 tabular-nums text-muted">€{dish.price}</dd>
+                <dt className="col-start-1 row-start-1 text-lg">{dish.name}</dt>
+                <dd className="col-start-1 row-start-2 text-sm text-muted">
+                  {dish.description}
+                </dd>
+                <dd className="col-start-2 row-span-2 row-start-1 shrink-0 self-center tabular-nums text-muted">
+                  €{dish.price}
+                </dd>
               </div>
             ))}
           </dl>
