@@ -1,9 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { validateReservation, type ReservationErrors } from "@/lib/reservation";
 
 const FIELD_ORDER = ["name", "email", "date", "party"] as const;
+const AUTOCOMPLETE: Partial<Record<(typeof FIELD_ORDER)[number], string>> = {
+  name: "name",
+  email: "email",
+};
 
 export default function ReservationForm() {
   const [errors, setErrors] = useState<ReservationErrors>({});
@@ -19,8 +24,10 @@ export default function ReservationForm() {
       date: String(fd.get("date") ?? ""),
       party: Number(fd.get("party")),
     });
-    setErrors(found);
-    setSent(Object.keys(found).length === 0);
+    flushSync(() => {
+      setErrors(found);
+      setSent(Object.keys(found).length === 0);
+    });
 
     const firstInvalid = FIELD_ORDER.find((id) => found[id]);
     if (firstInvalid) fieldRefs.current[firstInvalid]?.focus();
@@ -45,6 +52,7 @@ export default function ReservationForm() {
               fieldRefs.current[id] = el;
             }}
             type={id === "email" ? "email" : id === "date" ? "date" : id === "party" ? "number" : "text"}
+            autoComplete={AUTOCOMPLETE[id]}
             {...(id === "party" ? { min: 1, max: 12, defaultValue: 2 } : {})}
             {...field(id)}
             className="focus-ring mt-2 min-h-tap w-full border-b border-line bg-transparent py-2"
