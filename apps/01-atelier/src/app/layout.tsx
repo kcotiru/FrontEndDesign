@@ -27,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorantGaramond.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
         <script
           dangerouslySetInnerHTML={{
             __html: `try{var t=localStorage.getItem("atelier-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
