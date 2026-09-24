@@ -22,7 +22,11 @@ pnpm a11y          # axe, all four routes, against a running build
 Lighthouse a11y 100 (mobile, Slow 4G, 4x CPU) · LCP 756-811ms · CLS 0.00 ·
 INP 39ms · gzipped JS for `/` 135.3KB (138,582B) · no horizontal scroll
 360-1920px · full content and navigation without JavaScript (theme toggle and
-reservation-form submit excluded by design — see Task 12 report).
+reservation-form submit excluded by design — see Task 12 report). All
+standalone nav targets (header wordmark, nav links, theme toggle, reserve
+link) measure >=44px; the one inline text link (footer "Unsplash", 16.8px)
+is formally exempt under WCAG 2.2 SC 2.5.8's inline-in-a-sentence exception,
+not an oversight.
 
 Photography hotlinked from [Unsplash](https://unsplash.com). Demonstration
 site; not a real restaurant.

@@ -11,7 +11,10 @@ export default function SiteHeader() {
   return (
     <header className="border-b border-line">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-gutter py-6">
-        <Link href="/" className="focus-ring font-display text-xl tracking-tight">
+        <Link
+          href="/"
+          className="focus-ring inline-flex min-h-tap items-center font-display text-xl tracking-tight"
+        >
           Atelier
         </Link>
         <nav aria-label="Main">
